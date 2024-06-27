@@ -33,7 +33,7 @@ npm install //安裝npm套件
 ```
 npm start
 ```
-4. 至瀏覽器網址列輸入 http://localhost:3000，即可瀏覽 todolist 並進行操作~
+4. 至瀏覽器網址列輸入 http://localhost:3000/todos，即可瀏覽 todolist 主要操作頁面並進行操作~
 
 
 ## 專案畫面
