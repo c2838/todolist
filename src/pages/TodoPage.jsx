@@ -67,17 +67,56 @@ const TodoPage = () => {
 
     setInputValue('');
   }
+  const handleToggleDone = (id) => {
+    setTodos(prevtodos => prevtodos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          isDone: !todo.isDone
+        }
+      } else return todo
+    }))
+  }
+  const handleChangeMode = ({ id, isEdit }) => {
+    setTodos(prevTodos => prevTodos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          isEdit
+        }
+      }
+      return { ...todo, isEdit: false }
+    }))
+  }
+  const handleSave = ({ id, title }) => {
+    setTodos(prevTodos => prevTodos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          title,
+          isEdit: false,
+        }
+      } 
+      return todo;
+    }
+    ))
+  }
   return (
     <div>
       TodoPage
       <Header />
-      <TodoInput 
-      inputValue={inputValue} 
-      onChange={handleChange} 
-      onAddTodo={handleAddTodo}
-      onKeyDown={handleKeyDown}
+      <TodoInput
+        inputValue={inputValue}
+        onChange={handleChange}
+        onAddTodo={handleAddTodo}
+        onKeyDown={handleKeyDown}
       />
-      <TodoCollection todos={todos} />
+      <TodoCollection
+        todos={todos}
+        onToggleDone={handleToggleDone}
+        onSave={handleSave}
+        onChangeMode={handleChangeMode}
+      />
       <Footer />
     </div>
   );
