@@ -31,7 +31,7 @@ npm install //安裝npm套件
 ```
 3. 啟動程式
 ```
-npm start
+npm run start
 ```
 4. 至瀏覽器網址列輸入 http://localhost:3000/todos，即可瀏覽 todolist 主要操作頁面並進行操作~
 
