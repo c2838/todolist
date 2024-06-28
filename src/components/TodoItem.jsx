@@ -105,9 +105,11 @@ const StyledTaskItem = styled.div`
 const TodoItem = ({ todo, onToggleDone, onSave, onDelete, onChangeMode }) => {
   const inputRef = useRef(null)
   const handleKeyDown = (e) => {
+    // enter則呼叫onSave
     if (inputRef.current.value.length > 0 && e.key === 'Enter') {
       onSave?.({ id: todo.id, title: inputRef.current.value })
     }
+    // Escape脫離編輯模式
     if (e.key === 'Escape') {
       onChangeMode?.({ id: todo.id, isEdit: false })
     }
