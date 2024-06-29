@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { login } from 'api/auth';
 import {
   AuthContainer,
   AuthInputContainer,
@@ -8,10 +9,36 @@ import {
 import { ACLogoIcon } from 'assets/images';
 import { AuthInput } from 'components';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
-  const [userName, setUserName] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  const handleClick = async () => {
+    if (!(username.length && password.length)) {
+      return
+    }
+    const { sucess, authToken } = await login({ username, password })
+    if (sucess) {
+      localStorage.setItem('authToken', authToken)
+      Swal.fire({
+        title: '登入成功',
+        icon: 'success',
+        timer: 1000,
+        showConfirmButton: false,
+        position: 'top'
+      })
+      return
+    }
+    Swal.fire({
+      title: '登入失敗',
+      icon: 'error',
+      timer: 1000,
+      showConfirmButton: false,
+      position: 'top',
+    });
+  }
   return (
     <AuthContainer>
       <div>
@@ -23,8 +50,8 @@ const LoginPage = () => {
         <AuthInput
           label={'帳號'}
           placeholder={'請輸入帳號'}
-          value={userName}
-          onChange={(nameInputValue) => setUserName(nameInputValue)}
+          value={username}
+          onChange={(nameInputValue) => setUsername(nameInputValue)}
         />
       </AuthInputContainer>
 
@@ -37,7 +64,7 @@ const LoginPage = () => {
           onChange={(passwordInputValue) => setPassword(passwordInputValue)}
         />
       </AuthInputContainer>
-      <AuthButton>登入</AuthButton>
+      <AuthButton onClick={handleClick}>登入</AuthButton>
       <Link to="/signup">
         <AuthLinkText>註冊</AuthLinkText>
       </Link>

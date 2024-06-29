@@ -137,7 +137,9 @@ const TodoPage = () => {
   useEffect(() => {
     const getTodosAsync = async () => {
       try {
+        // 取得後端資料
         const todos = await getTodos();
+        // 渲染並設定isEdit為false
         setTodos(todos.map((todo) => ({ ...todo, isEdit: false })));
       } catch (error) {
         console.log(error);

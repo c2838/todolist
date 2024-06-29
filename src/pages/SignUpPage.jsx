@@ -10,7 +10,7 @@ import { AuthInput } from 'components';
 import { Link } from 'react-router-dom';
 
 const SignUpPage = () => {
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   return (
@@ -24,8 +24,8 @@ const SignUpPage = () => {
         <AuthInput
           label={'帳號'}
           placeholder={'請設定帳號'}
-          value={userName}
-          onChange={(nameInputValue) => setUserName(nameInputValue)}
+          value={username}
+          onChange={(nameInputValue) => setUsername(nameInputValue)}
         />
       </AuthInputContainer>
 
