@@ -8,12 +8,13 @@ import {
 } from 'components/common/auth.styled';
 import { ACLogoIcon } from 'assets/images';
 import { AuthInput } from 'components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleClick = async () => {
     if (!(username.length && password.length)) {
@@ -29,6 +30,7 @@ const LoginPage = () => {
         showConfirmButton: false,
         position: 'top'
       })
+      navigate('/todos')
       return
     }
     Swal.fire({
