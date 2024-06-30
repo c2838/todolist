@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Footer, Header, TodoCollection, TodoInput } from 'components';
-import { getTodos, createTodo, patchTodo, deleteTodo } from '../api/todos'
+import { getTodos, createTodo, patchTodo, deleteTodo } from '../api/todos';
+import { useAuth } from 'contexts/AuthContext';
 
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
   const remainingTodoAmount = todos.length;
+  const navigate = useNavigate();
+  const { currentMember, isAuthenticated } = useAuth();
+
   const handleChange = (value) => {
     setInputValue(value);
   };
@@ -104,7 +109,7 @@ const TodoPage = () => {
   const handleSave = async ({ id, title }) => {
     try {
       // 更新後端
-      await patchTodo({ id, title })
+      await patchTodo({ id, title });
       // 更新前端
       setTodos((prevTodos) =>
         prevTodos.map((todo) => {
@@ -118,19 +123,19 @@ const TodoPage = () => {
           return todo;
         }),
       );
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
   // 刪除todo
   const handleDelete = async (id) => {
     try {
       // 更新後端
-      await deleteTodo(id)
+      await deleteTodo(id);
       // 更新前端
       setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
   // 初次渲染
@@ -147,10 +152,18 @@ const TodoPage = () => {
     };
     getTodosAsync();
   }, []);
+  // 驗證是否登入
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [navigate, isAuthenticated]);
   return (
     <div>
       TodoPage
-      <Header />
+      <Header
+        userName={currentMember?.name}
+      />
       <TodoInput
         inputValue={inputValue}
         onChange={handleChange}

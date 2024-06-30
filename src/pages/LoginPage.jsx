@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { login } from 'api/auth';
+import { useState, useEffect } from 'react';
 import {
   AuthContainer,
   AuthInputContainer,
@@ -10,27 +9,27 @@ import { ACLogoIcon } from 'assets/images';
 import { AuthInput } from 'components';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useAuth } from '../contexts/AuthContext';
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate = useNavigate()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
 
   const handleClick = async () => {
     if (!(username.length && password.length)) {
-      return
+      return;
     }
-    const { sucess, authToken } = await login({ username, password })
-    if (sucess) {
-      localStorage.setItem('authToken', authToken)
+    const success = await login({ username, password });
+    if (success) {
       Swal.fire({
         title: '登入成功',
         icon: 'success',
         timer: 1000,
         showConfirmButton: false,
-        position: 'top'
-      })
-      navigate('/todos')
+        position: 'top',
+      });
       return
     }
     Swal.fire({
@@ -40,7 +39,14 @@ const LoginPage = () => {
       showConfirmButton: false,
       position: 'top',
     });
-  }
+  };
+  // 驗證是否登入並跳轉頁面
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/todos');
+    }
+  }, [navigate, isAuthenticated]);
+
   return (
     <AuthContainer>
       <div>
