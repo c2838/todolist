@@ -45,7 +45,6 @@ npm start
 
 
 ## 專案畫面
-待新增
 ![Alt text](https://i.imgur.com/o33RnYy.png)
 ![Alt text](https://i.imgur.com/4ifrWue.png)
 ![Alt text](https://i.imgur.com/nHcsqlw.png)
