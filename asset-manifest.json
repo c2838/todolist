@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/todolist/static/css/main.4922d5c4.css",
+    "main.js": "/todolist/static/js/main.a03c1c30.js",
+    "static/js/488.2af19e2d.chunk.js": "/todolist/static/js/488.2af19e2d.chunk.js",
+    "static/media/ac-logo.svg": "/todolist/static/media/ac-logo.eea79863f987f0eb16f5291563e66e94.svg",
+    "index.html": "/todolist/index.html",
+    "static/media/check-hover.svg": "/todolist/static/media/check-hover.f1b1bcfd6d693b786f22f98ce9a0b07d.svg",
+    "static/media/check-active.svg": "/todolist/static/media/check-active.680985db5f64dea7ef622d4523d3e9b3.svg",
+    "static/media/check-circle.svg": "/todolist/static/media/check-circle.ad8591fdf0d95e5592e634d586abc99e.svg",
+    "main.4922d5c4.css.map": "/todolist/static/css/main.4922d5c4.css.map",
+    "main.a03c1c30.js.map": "/todolist/static/js/main.a03c1c30.js.map",
+    "488.2af19e2d.chunk.js.map": "/todolist/static/js/488.2af19e2d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4922d5c4.css",
+    "static/js/main.a03c1c30.js"
+  ]
+}
